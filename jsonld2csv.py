@@ -17,6 +17,9 @@ def ldget(obj, path, default=None):
 
 
 # fichier CSV de sortie
+# avec python3 ajout de l'encoding et newline='' pour l'ouverture du fichier et 
+# éviter des lignes vides dans le csv
+# with open(re.sub(r'json.*', 'csv', sys.argv[1]), 'w', newline='', encoding="utf-8") as csvfile:
 with open(re.sub(r'json.*', 'csv', sys.argv[1]), 'w') as csvfile:
     fields = ['id', 'label', 'type', 'theme', 'startdate', 'enddate',
               'street', 'postalcode', 'city', 'insee',
@@ -26,6 +29,8 @@ with open(re.sub(r'json.*', 'csv', sys.argv[1]), 'w') as csvfile:
     csv_out.writerow(fields)
 
     # fichier json-ld en entrée
+	# avec python3 ajout de l'encoding 
+    # with open(sys.argv[1], 'r', encoding="utf-8") as json_file:
     with open(sys.argv[1], 'r') as json_file:
         data = json.load(json_file)
         for e in data['@graph']:
